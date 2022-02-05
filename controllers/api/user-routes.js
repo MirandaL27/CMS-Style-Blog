@@ -76,33 +76,28 @@ router.post('/',async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    try{
-        let data = await User.findOne({
-            where: {
-              email: req.body.email
-            }
-          });
-          if (!dbUserData) {
-            res.status(400).json({ message: 'No user with that email address!' });
-            return;
-          }
-          const validPass = data.comparePassword(req.body.password);
-          if (!validPass) {
-            res.status(400).json({ message: 'Incorrect password!' });
-            return;
-          }  
-          req.session.save(() => {
-            // declare session variables
-            req.session.user_id = data.id;
-            req.session.username = data.user_name;
-            req.session.loggedIn = true;
-            });
-      
-            res.json({ user: data, message: 'You are now logged in!' });
+    let data = await User.findOne({
+        where: {
+            email: req.body.email
+        }
+    });
+    if (!data) {
+        res.status(400).json({ message: 'No user with that email address!' });
+        return;
     }
-    catch(error){
-        console.log(error);
+    const validPass = data.comparePassword(req.body.password);
+    if (!validPass) {
+        res.status(400).json({ message: 'Incorrect password!' });
+        return;
     }
+    req.session.save(() => {
+        // declare session variables
+        req.session.user_id = data.id;
+        req.session.username = data.user_name;
+        req.session.loggedIn = true;
+    });
+
+    res.json({ user: data, message: 'You are now logged in!' });
 });
 
 router.post('/logout', (req, res) => {
