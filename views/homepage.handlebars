@@ -1,0 +1,11 @@
+<ol class="post-list">
+  {{#each posts as |post|}}
+  <li>
+    <article>
+        <h2>{{post.title}}</h2>
+        <p>{{post.post-content}}</p>
+        <a href="/post/{{id}}">{{comments.length}} </a>
+    </article>
+  </li>
+  {{/each}}
+</ol>
