@@ -12,8 +12,26 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/',(req, res) => {
+router.post('/',async (req, res) => {
+    try{
+        let data = await User.create({
+            user_name: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+          });
 
+        req.session.save(() => {
+        req.session.user_id = data.id;
+        req.session.user_name = data.user_name;
+        req.session.loggedIn = true;
+        });
+        
+        res.json(data);
+    }
+    catch (error){
+        console.log(error);
+        res.status(500).json(error);
+    }
 });
 
 router.post('/login', (req, res) => {
