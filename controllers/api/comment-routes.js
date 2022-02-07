@@ -15,21 +15,21 @@ router.get('/', async (req, res) => {
 router.post('/',async (req, res) => {
     try{
         let data = await Comment.create({
-            comment_text: req.body.comment_text,
+            comment_content: req.body.comment_content,
             post_id: req.body.post_id,
             user_id: req.body.user_id
           });
           res.json(data);
     }
     catch(error){
-        console.log(err);
-        res.status(400).json(err);
+        console.log(error);
+        res.status(400).json(error);
     }
 });
 
 router.delete('/:id',async(req, res) => {
     try{
-        let data = Comment.destroy({
+        let data = await Comment.destroy({
             where: {
               id: req.params.id
             }
@@ -41,8 +41,8 @@ router.delete('/:id',async(req, res) => {
           res.json(data);
     }
     catch(error){
-        console.log(err);
-        res.status(500).json(err);
+        console.log(error);
+        res.status(500).json(error);
     }
 });
 
