@@ -14,18 +14,17 @@
 
   <div>
     <button type="submit">add comment</button>
-    <button type="button" class="upvote-btn">upvote</button>
   </div>
 </form>
 
 <div class="comments">
-  {{#each blogPost.comment}}
+  {{#each blogPost.comments as |comment|}}
   <section class="comment">
     <div class="content">
-      {{blogPost.user.user_name}} on {{blogPost.comment.created_at}}
+      {{blogPost.user.user_name}} on {{comment.created_at}}
     </div>
     <div class="text">
-      {{blogPost.comment.comment_content}}
+      {{comment.comment_content}}
     </div>
   </section>
   {{/each}}

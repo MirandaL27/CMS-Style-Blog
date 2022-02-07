@@ -6,12 +6,12 @@
   <form class="edit-post-form">
     <div>
         <label for="post-title">title:</label>
-      <input name="post-title" type="text" value="{{post.title}}" />
+      <input name="post-title" type="text" value="{{blogPost.title}}" />
       <label for="post-content">Content:</label>
-      <textarea name = "post-content" >({{post.post_content}})</textarea>
+      <textarea name = "post-content" >{{blogPost.post_content}}</textarea>
     </div>
     <div>
-      <a href="/post/{{post.id}}">{{post.comments.length}} comments</a>
+      <a href="/post/{{blogPost.id}}">{{blogPost.comments.length}} comments</a>
     </div>
     <button type="submit">Save post</button>
     <button type="button" class="delete-post-btn">Delete post</button>
@@ -23,13 +23,13 @@
     <textarea name="comment-body"></textarea>
   </div>
     <div class="comments">
-  {{#each this}}
+  {{#each blogPost.comments as |comment|}}
   <section class="comment">
     <div class="content">
-      {{user.user_name}} on {{created_at}}
+      {{blogPost.user.user_name}} on {{comment.created_at}}
     </div>
     <div class="text">
-      {{comment_content}}
+      {{comment.comment_content}}
     </div>
   </section>
   {{/each}}
