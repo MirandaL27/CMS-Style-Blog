@@ -2,7 +2,10 @@ const { Model, DataTypes } = require('sequelize'); // need sequelize to interacv
 const sequelize = require('../db/connection');// need database connection
 
 class User extends Model {
-
+    // set up method to run on instance data (per user) to check password
+    checkPassword(pw) {
+        return bcrypt.compareSync(pw, this.password);
+      }
 }//define the user class and inherit from the sequelize Model class
 
 //define the database columns for the user
@@ -37,6 +40,18 @@ User.init({
     }
 },
     {
+        hooks: {
+            // set up beforeCreate lifecycle "hook" functionality
+            async beforeCreate(newData) {
+              newData.password = await bcrypt.hash(newData.password, 10);
+              return newData;
+            },
+            // set up beforeUpdate lifecycle "hook" functionality
+            async beforeUpdate(updatedData) {
+              updatedData.password = await bcrypt.hash(updatedData.password, 10);
+              return updatedData;
+            }
+          },
         //other model options
         sequelize, // pass in the connection instance
         timestamps: false, // disables the created_at/updated_at fields

@@ -1,6 +1,7 @@
 const router = require('express').Router(); // need the router to make the routes work
 const { Post} = require('../../models');//need post model to make database queries
 const sequelize = require('../../db/connection');//need the database connection
+const withAuth = require('../../utils/auth');
 
 // get all posts
 router.get('/', async (req, res) => {
@@ -53,7 +54,7 @@ router.get('/', async (req, res) => {
   });
 
   //create a new post
-  router.post('/',async (req, res) => {
+  router.post('/',withAuth,async (req, res) => {
     try{
         const data = await Post.create({
             title: req.body.title,
@@ -69,7 +70,7 @@ router.get('/', async (req, res) => {
   });
 
   //update a post
-  router.put('/:id',async (req, res) => {
+  router.put('/:id',withAuth,async (req, res) => {
     try{
         const data = await Post.update(
             {
@@ -94,7 +95,7 @@ router.get('/', async (req, res) => {
   });
 
   //delete a post
-  router.delete('/:id',async (req, res) => {
+  router.delete('/:id',withAuth,async (req, res) => {
       try{
         const data = await Post.destroy({
             where: {
