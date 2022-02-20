@@ -29,7 +29,8 @@ router.get('/',async (req, res) => {
           });
         // serialize data before passing to template
         const blogPosts = data.map(post => post.get({ plain: true }));
-        res.render('dashboard', { blogPosts });
+        console.log(blogPosts);
+        res.render('dashboard', { blogPosts, loggedIn: true});
     }
     catch(error){
         console.log(error);
@@ -64,7 +65,7 @@ router.get('/',async (req, res) => {
         ]
       });
       const blogPost = data.get({ plain: true });
-      res.render('edit-post', {blogPost});
+      res.render('edit-post', {blogPost, loggedIn: true});
   })
 
   module.exports = router;
