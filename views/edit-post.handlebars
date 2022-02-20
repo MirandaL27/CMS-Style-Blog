@@ -6,12 +6,9 @@
   <form class="edit-post-form">
     <div>
         <label for="post-title">title:</label>
-      <input name="post-title" type="text" value="{{blogPost.title}}" />
+      <input class="post-title" name="post-title" type="text" value="{{blogPost.title}}" />
       <label for="post-content">Content:</label>
-      <textarea name = "post-content" >{{blogPost.post_content}}</textarea>
-    </div>
-    <div>
-      <a href="/post/{{blogPost.id}}">{{blogPost.comments.length}} comments</a>
+      <textarea class="post-content" name = "post-content" >{{blogPost.post_content}}</textarea>
     </div>
     <button type="submit">Save post</button>
     <button type="button" class="delete-post-btn">Delete post</button>
@@ -20,7 +17,7 @@
 
 <form class="comment-form">
   <div>
-    <textarea name="comment-body"></textarea>
+    <textarea class="comment-content" name="comment-content"></textarea>
   </div>
     <div class="comments">
   {{#each blogPost.comments as |comment|}}
@@ -38,3 +35,7 @@
     <button type="submit">add comment</button>
   </div>
 </form>
+
+<script src="/javascript/postComment.js"></script>
+<script src="/javascript/editPost.js"></script>
+<script src="/javascript/deletePost.js"></script>
