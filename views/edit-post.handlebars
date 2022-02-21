@@ -16,9 +16,10 @@
 </article>
 
 <form class="comment-form">
-  <div>
+  <h2>Comments:</h2>
+  {{!-- <div>
     <textarea class="comment-content" name="comment-content"></textarea>
-  </div>
+  </div> --}}
     <div class="comments">
   {{#each blogPost.comments as |comment|}}
   <section class="comment">
@@ -31,11 +32,11 @@
   </section>
   {{/each}}
 </div>
-  <div>
+  {{!-- <div>
     <button type="submit">add comment</button>
-  </div>
+  </div> --}}
 </form>
 
-<script src="/javascript/postComment.js"></script>
+{{!-- <script src="/javascript/postComment.js"></script> --}}
 <script src="/javascript/editPost.js"></script>
 <script src="/javascript/deletePost.js"></script>

@@ -3,6 +3,7 @@ const sequelize = require('../db/connection');
 const { Post, User, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
+  console.log(req.session);
   try{
     let data = await Post.findAll({
         attributes: [
@@ -27,7 +28,8 @@ router.get('/', async (req, res) => {
         ]
       });
       const blogPosts = data.map(post => post.get({ plain: true }));
-      res.render('homepage', {blogPosts});
+      console.log(req.session.loggedIn);
+      res.render('homepage', {blogPosts, loggedIn: req.session.loggedIn});
   }
   catch(error){
     console.log(err);
@@ -67,7 +69,7 @@ router.get('/', async (req, res) => {
             return;
           }
           const blogPost = data.get({ plain: true });
-          res.render('single-post', {blogPost});
+          res.render('single-post', {blogPost, loggedIn: req.session.loggedIn});
       }
       catch(error){
         console.log(error);

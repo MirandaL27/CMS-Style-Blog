@@ -1,5 +1,10 @@
+
 <article class="post">
+  {{#if loggedIn}}
   <a href="/dashboard"> &larr; Back to dashboard</a>
+  {{else}}
+  <a href="/"> &larr; Back to Home</a>
+  {{/if}}
     <div class="title">
         <h3>{{blogPost.title}}</h3>
     </div>
@@ -9,6 +14,8 @@
 </article>
 
 <form class="comment-form">
+{{#if loggedIn}}
+<h2>Add Comment: </h2>
   <div>
     <textarea class="comment-content" name="comment-content"></textarea>
   </div>
@@ -16,9 +23,11 @@
   <div>
     <button type="submit">add comment</button>
   </div>
+  {{/if}}
 </form>
 
 <div class="comments">
+  <h2>Comments:</h2>
   {{#each blogPost.comments as |comment|}}
   <section class="comment">
     <div class="content">
