@@ -23,11 +23,11 @@
     <div class="comments">
   {{#each blogPost.comments as |comment|}}
   <section class="comment">
-    <div class="content">
-      {{blogPost.user.user_name}} on {{comment.created_at}}
-    </div>
     <div class="text">
       {{comment.comment_content}}
+    </div>
+    <div class="content">
+      {{blogPost.user.user_name}} on {{comment.created_at}}
     </div>
   </section>
   {{/each}}

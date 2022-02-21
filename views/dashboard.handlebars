@@ -1,5 +1,6 @@
+
 <section>
-    <h2>Create A New Post</h2>
+    <h2>Create A New Post: </h2>
     <form class="new-post-form">
     <div>
       <label for="post-title">Title:</label>
@@ -15,23 +16,25 @@
 
 {{#if blogPosts.length}}
 <section>
-    <h2>Your Posts</h2>
-    <ol>
+    <h2>Your Posts: </h2>
         {{#each blogPosts as |post|}}
-        <li>
             <article class="post">
-                <div class="title">
-                    <h3>{{post.title}}</h3>
-                </div>
-                <div class="content">
-                    {{post.post_content}}
-                    <a href="/post/{{id}}">{{comments.length}} comments</a>
-                </div>
+              <div class="title">
+                <h3>{{post.title}}</h3>
+              </div>
+              <div class="content">
+                <p>{{post.post_content}}</p>
+                <p>{{comments.length}} comment(s)</p>
+                {{#if post.user.user_name}}
+                <p>Created by {{post.user.user_name}} on {{post.created_at}}</p>
+                {{else}}
+                <p>Created by unknown on {{post.created_at}}</p>
+                {{/if}}
+              </div>
+              <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+              <a href="/post/{{id}}">Post details</a>
             </article>
-            <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-        </li>
         {{/each}}
-    </ol>
 </section>
 {{/if}}
 

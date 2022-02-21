@@ -11,6 +11,16 @@
     <div class="content">
         <p>{{blogPost.post_content}}</p>
     </div>
+    <div class="post-creator">
+      {{#if blogPost.user.user_name}}
+      <p>Created by: {{blogPost.user.user_name}}</p>
+      {{else}}
+      <p>Created by: unknown</p>
+      {{/if}}
+    </div>
+    <div class="date">
+      <p>Date created: {{blogPost.created_at}}</p>
+    </div>
 </article>
 
 <form class="comment-form">
@@ -30,11 +40,11 @@
   <h2>Comments:</h2>
   {{#each blogPost.comments as |comment|}}
   <section class="comment">
-    <div class="content">
-      {{blogPost.user.user_name}} on {{comment.created_at}}
-    </div>
     <div class="text">
       {{comment.comment_content}}
+    </div>
+    <div class="content">
+      Created by {{comment.user.user_name}} on {{comment.created_at}}
     </div>
   </section>
   {{/each}}
