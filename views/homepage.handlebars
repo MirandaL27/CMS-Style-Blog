@@ -6,10 +6,14 @@
             </div>
             <div class="content">
                 <a href="/post/{{id}}">Post Details</a>
-                <p>{{comments.length}} comment(s)</p>
+                <p>{{comments.length}} {{plural_formatting "comment" comments.length}} </p>
             </div>
             <div>
-                <p> Created on: {{post.created_at}}</p>
+                {{#if post.user.user_name}}
+                <p>Created by: {{post.user.user_name}} on {{date_formatting post.created_at}}</p>
+                {{else}}
+                <p>Created by: Unknown on {{date_formatting post.created_at}}</p>
+                {{/if}}
             </div>
         </article>
     {{/each}}

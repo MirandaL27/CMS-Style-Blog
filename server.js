@@ -3,7 +3,8 @@ const sequelize = require('./db/connection'); //need connection object to connec
 const path = require('path'); // need path for making files paths
 const routes = require('./controllers');//need the controllers so that we can use the routes
 const exphbs = require('express-handlebars');//need for using handlebars
-const hbs = exphbs.create({ }); 
+const helpers = require('./utils/helpers');//need for using helpers
+const hbs = exphbs.create({ helpers }); //add helpers function to handlebars
 
 const app = express();//need to initialize the express variable
 const PORT = process.env.PORT || 3001; //define the port that the connection will be on

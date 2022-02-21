@@ -24,11 +24,11 @@
               </div>
               <div class="content">
                 <p>{{post.post_content}}</p>
-                <p>{{comments.length}} comment(s)</p>
+                <p>{{comments.length}} {{plural_formatting "comment" comments.length}}</p>
                 {{#if post.user.user_name}}
-                <p>Created by {{post.user.user_name}} on {{post.created_at}}</p>
+                <p>Created by {{post.user.user_name}} on {{date_formatting post.created_at}}</p>
                 {{else}}
-                <p>Created by unknown on {{post.created_at}}</p>
+                <p>Created by unknown on {{date_formatting post.created_at}}</p>
                 {{/if}}
               </div>
               <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>

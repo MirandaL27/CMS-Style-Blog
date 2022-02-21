@@ -19,7 +19,7 @@
       {{/if}}
     </div>
     <div class="date">
-      <p>Date created: {{blogPost.created_at}}</p>
+      <p>Date created: {{date_formatting blogPost.created_at}}</p>
     </div>
 </article>
 
@@ -44,8 +44,11 @@
       {{comment.comment_content}}
     </div>
     <div class="content">
-      Created by {{comment.user.user_name}} on {{comment.created_at}}
+      Created by {{comment.user.user_name}} on {{date_formatting comment.created_at}}
     </div>
+    <form class="delete-comment-form" id="id-{{comment.id}}">
+      <button class="delete-comment-btn">Delete</button>
+    </form>
   </section>
   {{/each}}
 </div>
