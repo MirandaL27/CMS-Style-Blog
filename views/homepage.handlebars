@@ -1,5 +1,6 @@
 <div class="blog-wrapper">
     <h2>All Posts:</h2>
+    {{#if blogPosts.length}}
     {{#each blogPosts as |post|}}
     <article class="post">
         <div class="title-wrapper">
@@ -22,4 +23,7 @@
         </div>
     </article>
     {{/each}}
+    {{else}}
+    <h3>Nothing has been posted.</h3>
+    {{/if}}
 </div>
