@@ -1,31 +1,31 @@
-
 <article class="post">
   {{#if loggedIn}}
-  <a class="btn" href="/dashboard"> &larr; Back to dashboard</a>
+  <div class="back-btn">
+    <a class="btn" href="/dashboard"> &larr; Back to dashboard</a>
+  </div>
   {{else}}
-  <a href="/"> &larr; Back to Home</a>
+  <a class="btn" href="/"> &larr; Back to Home</a>
   {{/if}}
+  <div class="post-title title-wrapper">
     <div class="title">
-        <h3>{{blogPost.title}}</h3>
+      <h3 id="blogpost-title">{{blogPost.title}}</h3>
     </div>
-    <div class="content">
-        <p>{{blogPost.post_content}}</p>
-    </div>
-    <div class="post-creator">
+    <div class="post-creator details">
       {{#if blogPost.user.user_name}}
-      <p>Created by: {{blogPost.user.user_name}}</p>
+      <p>Created by: {{blogPost.user.user_name}} on {{date_formatting blogPost.created_at}}</p>
       {{else}}
-      <p>Created by: unknown</p>
+      <p>Created by: unknown on {{date_formatting blogPost.created_at}}</p>
       {{/if}}
     </div>
-    <div class="date">
-      <p>Date created: {{date_formatting blogPost.created_at}}</p>
-    </div>
+  </div>
+  <div class="post-content content">
+    <p>{{blogPost.post_content}}</p>
+  </div>
 </article>
 
 <form class="comment-form">
-{{#if loggedIn}}
-<h2>Add Comment: </h2>
+  {{#if loggedIn}}
+  <h2>Add Comment: </h2>
   <div>
     <textarea class="comment-content" name="comment-content"></textarea>
   </div>

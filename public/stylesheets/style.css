@@ -85,11 +85,7 @@
     padding-bottom: 2px;
     width: 50%
   }
-  .content{
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-.comments{
+.comments,.content{
     padding-bottom: 10px;
     padding-top: 10px;
 }
@@ -131,4 +127,37 @@
 }
 .comment:nth-child(odd){
     background-color: rgb(146, 185, 82)
+}
+
+.page-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.login-form{
+    flex-direction: column;
+}
+
+.signup-form{
+    flex-direction: column;
+}
+.login-email-wrapper,.username-wrapper, .email-wrapper, .password-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+#blogpost-title{
+    color: lightgreen;
+    padding-left: 15px;
+}
+
+.back-btn{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.comment-content{
+    margin: 15px;
 }
